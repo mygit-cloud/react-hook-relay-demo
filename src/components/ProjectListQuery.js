@@ -1,26 +1,20 @@
 import React from 'react';
 import { graphql, usePreloadedQuery } from 'react-relay';
+import ProjectList from "./ProjectList"
 
 export default function ProjectListQuery(props) {
     const data = usePreloadedQuery(
         graphql`
         query ProjectListQuery {
             projects {
-              edges {
-                node {
-                 id
-                  leader
-                }
-              }
+              ...ProjectList_projects
             }
           }`,
         props.queryRef,
     );
     return (
         <div>
-            {data.projects.edges.map(({ node }) =>
-                <div key={node.id}>{node.id} - {node.leader}</div>
-            )}
+            <ProjectList projects={data.projects} />
         </div>
     )
 }

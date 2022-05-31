@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<86c4b34c13b28f2f5510e2119e888d59>>
+ * @generated SignedSource<<1ab98b66e76ced3654e456c564850e1a>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -11,15 +11,11 @@
 
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
+type ProjectList_projects$fragmentType = any;
 export type ProjectListQuery$variables = {||};
 export type ProjectListQuery$data = {|
   +projects: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string,
-        +leader: string,
-      |},
-    |}>,
+    +$fragmentSpreads: ProjectList_projects$fragmentType,
   |},
 |};
 export type ProjectListQuery = {|
@@ -28,63 +24,30 @@ export type ProjectListQuery = {|
 |};
 */
 
-var node/*: ConcreteRequest*/ = (function(){
-var v0 = [
-  {
-    "alias": null,
-    "args": null,
-    "concreteType": "ProjectConnection",
-    "kind": "LinkedField",
-    "name": "projects",
-    "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "ProjectEdge",
-        "kind": "LinkedField",
-        "name": "edges",
-        "plural": true,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "Project",
-            "kind": "LinkedField",
-            "name": "node",
-            "plural": false,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "leader",
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ],
-    "storageKey": null
-  }
-];
-return {
+var node/*: ConcreteRequest*/ = {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "ProjectListQuery",
-    "selections": (v0/*: any*/),
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "ProjectConnection",
+        "kind": "LinkedField",
+        "name": "projects",
+        "plural": false,
+        "selections": [
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "ProjectList_projects"
+          }
+        ],
+        "storageKey": null
+      }
+    ],
     "type": "Query",
     "abstractKey": null
   },
@@ -93,20 +56,67 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "ProjectListQuery",
-    "selections": (v0/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "ProjectConnection",
+        "kind": "LinkedField",
+        "name": "projects",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ProjectEdge",
+            "kind": "LinkedField",
+            "name": "edges",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Project",
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "leader",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "b8ec05c2fae0dfa2383e64f39f91416c",
+    "cacheID": "017397d43072120a85ff1bfe9ace21a1",
     "id": null,
     "metadata": {},
     "name": "ProjectListQuery",
     "operationKind": "query",
-    "text": "query ProjectListQuery {\n  projects {\n    edges {\n      node {\n        id\n        leader\n      }\n    }\n  }\n}\n"
+    "text": "query ProjectListQuery {\n  projects {\n    ...ProjectList_projects\n  }\n}\n\nfragment ProjectList_projects on ProjectConnection {\n  edges {\n    node {\n      ...Project_proj\n      id\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
   }
 };
-})();
 
-(node/*: any*/).hash = "736a6277c95baf7ff9e468b5e311ac51";
+(node/*: any*/).hash = "f45f80388e3268d96c20a9895dae994d";
 
 module.exports = ((node/*: any*/)/*: Query<
   ProjectListQuery$variables,
