@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<defb87f33c5f3b9f84db1822bf1129c8>>
+ * @generated SignedSource<<86c4b34c13b28f2f5510e2119e888d59>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -11,13 +11,15 @@
 
 /*::
 import type { ConcreteRequest, Query } from 'relay-runtime';
-export type ProjectListQuery$variables = {|
-  id: string,
-|};
+export type ProjectListQuery$variables = {||};
 export type ProjectListQuery$data = {|
-  +project: ?{|
-    +id: string,
-    +leader: string,
+  +projects: ?{|
+    +edges: ?$ReadOnlyArray<?{|
+      +node: ?{|
+        +id: string,
+        +leader: string,
+      |},
+    |}>,
   |},
 |};
 export type ProjectListQuery = {|
@@ -29,38 +31,47 @@ export type ProjectListQuery = {|
 var node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "id"
-  }
-],
-v1 = [
-  {
     "alias": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "id",
-        "variableName": "id"
-      }
-    ],
-    "concreteType": "Project",
+    "args": null,
+    "concreteType": "ProjectConnection",
     "kind": "LinkedField",
-    "name": "project",
+    "name": "projects",
     "plural": false,
     "selections": [
       {
         "alias": null,
         "args": null,
-        "kind": "ScalarField",
-        "name": "id",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "leader",
+        "concreteType": "ProjectEdge",
+        "kind": "LinkedField",
+        "name": "edges",
+        "plural": true,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Project",
+            "kind": "LinkedField",
+            "name": "node",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "id",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "leader",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
         "storageKey": null
       }
     ],
@@ -69,33 +80,33 @@ v1 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "ProjectListQuery",
-    "selections": (v1/*: any*/),
+    "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Operation",
     "name": "ProjectListQuery",
-    "selections": (v1/*: any*/)
+    "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "adc9c7b02b17450b0a60a0ae9101725f",
+    "cacheID": "b8ec05c2fae0dfa2383e64f39f91416c",
     "id": null,
     "metadata": {},
     "name": "ProjectListQuery",
     "operationKind": "query",
-    "text": "query ProjectListQuery(\n  $id: ID!\n) {\n  project(id: $id) {\n    id\n    leader\n  }\n}\n"
+    "text": "query ProjectListQuery {\n  projects {\n    edges {\n      node {\n        id\n        leader\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node/*: any*/).hash = "7dcec76194234da3bf83a5e3152e2750";
+(node/*: any*/).hash = "736a6277c95baf7ff9e468b5e311ac51";
 
 module.exports = ((node/*: any*/)/*: Query<
   ProjectListQuery$variables,
