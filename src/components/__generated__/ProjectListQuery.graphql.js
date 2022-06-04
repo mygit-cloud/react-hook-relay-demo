@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1ab98b66e76ced3654e456c564850e1a>>
+ * @generated SignedSource<<8771203325e1c30c3a0a9af77ad517fb>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -107,12 +107,12 @@ var node/*: ConcreteRequest*/ = {
     ]
   },
   "params": {
-    "cacheID": "017397d43072120a85ff1bfe9ace21a1",
+    "cacheID": "8fe156285e695f9c029907d0b62bcead",
     "id": null,
     "metadata": {},
     "name": "ProjectListQuery",
     "operationKind": "query",
-    "text": "query ProjectListQuery {\n  projects {\n    ...ProjectList_projects\n  }\n}\n\nfragment ProjectList_projects on ProjectConnection {\n  edges {\n    node {\n      ...Project_proj\n      id\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
+    "text": "query ProjectListQuery {\n  projects {\n    ...ProjectList_projects\n  }\n}\n\nfragment ProjectList_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      ...Project_proj\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
   }
 };
 

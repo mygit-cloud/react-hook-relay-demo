@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ba02f3e3f9bba4b1e0a6f916b357b91c>>
+ * @generated SignedSource<<bea1debe8bc26d10fc2e9d928c64e4d6>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -17,6 +17,7 @@ declare export opaque type ProjectList_projects$fragmentType: FragmentType;
 export type ProjectList_projects$data = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
+      +id: string,
       +$fragmentSpreads: Project_proj$fragmentType,
     |},
   |}>,
@@ -52,6 +53,13 @@ var node/*: ReaderFragment*/ = {
           "plural": false,
           "selections": [
             {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "id",
+              "storageKey": null
+            },
+            {
               "args": null,
               "kind": "FragmentSpread",
               "name": "Project_proj"
@@ -67,7 +75,7 @@ var node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 
-(node/*: any*/).hash = "b7bef462d3e444eb53696eea579b6c55";
+(node/*: any*/).hash = "7f662e79ae34758cdc6d48f71ecb1a0e";
 
 module.exports = ((node/*: any*/)/*: Fragment<
   ProjectList_projects$fragmentType,

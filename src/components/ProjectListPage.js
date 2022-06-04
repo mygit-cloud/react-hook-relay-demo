@@ -1,4 +1,4 @@
-import React, { useCallback, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { useQueryLoader } from 'react-relay';
 import { ErrorBoundary } from 'react-error-boundary'
 
@@ -19,15 +19,16 @@ function ErrorFallback({ error, resetErrorBoundary }) {
 export default function ProjectListPage(props) {
     const [queryRef, loadQuery] = useQueryLoader(ProjectListQueryQL)
 
-    const handleClick = useCallback(() => {
-        // Load the query in the event handler, onClick
-        loadQuery()
-    }, [loadQuery]);
+    // useEffect(() => {
+    //     loadQuery();
+    // });
 
+    if (queryRef === null) {
+        loadQuery();
+    }
 
     return (
         <div>
-            <button onClick={handleClick}> Load data</button>
             {
                 queryRef != null ?
                     <div>

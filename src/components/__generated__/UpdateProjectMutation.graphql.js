@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b8143e2b3e16591979de876d98e6d2cd>>
+ * @generated SignedSource<<90d57ce7f1ae5e09ef628d3af5583dd8>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -11,27 +11,28 @@
 
 /*::
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
-export type createProjectInput = {|
-  content: string,
-  leader: string,
-  startDate: string,
+export type updateProjectInput = {|
+  id: string,
+  content?: ?string,
+  leader?: ?string,
+  startDate?: ?string,
   engineer?: ?string,
   clientMutationId?: ?string,
 |};
-export type CreateProjectMutation$variables = {|
-  input: createProjectInput,
+export type UpdateProjectMutation$variables = {|
+  input: updateProjectInput,
 |};
-export type CreateProjectMutation$data = {|
-  +createProject: ?{|
+export type UpdateProjectMutation$data = {|
+  +updateProject: ?{|
     +project: ?{|
       +id: string,
       +leader: string,
     |},
   |},
 |};
-export type CreateProjectMutation = {|
-  variables: CreateProjectMutation$variables,
-  response: CreateProjectMutation$data,
+export type UpdateProjectMutation = {|
+  variables: UpdateProjectMutation$variables,
+  response: UpdateProjectMutation$data,
 |};
 */
 
@@ -53,9 +54,9 @@ v1 = [
         "variableName": "input"
       }
     ],
-    "concreteType": "createProjectPayload",
+    "concreteType": "updateProjectPayload",
     "kind": "LinkedField",
-    "name": "createProject",
+    "name": "updateProject",
     "plural": false,
     "selections": [
       {
@@ -92,7 +93,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "CreateProjectMutation",
+    "name": "UpdateProjectMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -101,23 +102,23 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "CreateProjectMutation",
+    "name": "UpdateProjectMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "408c98992c56cbd96ed58e5ed94da8ac",
+    "cacheID": "de60dea949ce9874270cc83e0b60ca1b",
     "id": null,
     "metadata": {},
-    "name": "CreateProjectMutation",
+    "name": "UpdateProjectMutation",
     "operationKind": "mutation",
-    "text": "mutation CreateProjectMutation(\n  $input: createProjectInput!\n) {\n  createProject(input: $input) {\n    project {\n      id\n      leader\n    }\n  }\n}\n"
+    "text": "mutation UpdateProjectMutation(\n  $input: updateProjectInput!\n) {\n  updateProject(input: $input) {\n    project {\n      id\n      leader\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node/*: any*/).hash = "fdf00b85d1bd299b98a6492d70ea13bf";
+(node/*: any*/).hash = "49f3cd51b2da46a34cd668f02709e6f0";
 
 module.exports = ((node/*: any*/)/*: Mutation<
-  CreateProjectMutation$variables,
-  CreateProjectMutation$data,
+  UpdateProjectMutation$variables,
+  UpdateProjectMutation$data,
 >*/);

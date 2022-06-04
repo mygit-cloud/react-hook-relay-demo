@@ -12,6 +12,7 @@ export default function ProjectListQuery(props) {
           }`,
         props.queryRef,
     );
+
     return (
         <div>
             <ProjectList projects={data.projects} />
