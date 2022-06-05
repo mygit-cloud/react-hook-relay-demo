@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { graphql, useMutation } from 'react-relay';
 
-export default function CreateProject() {
+export default function CreateProject(props) {
     const [leader, setLeader] = useState("");
     const [content, setContent] = useState("");
     const [date, setDate] = useState("");
     const [commit, isInFlight] = useMutation(graphql`
-    mutation CreateProjectMutation($input:createProjectInput!) {
+    mutation CreateProjectMutation(
+        $connections: [ID!]!
+        $input:createProjectInput!
+        ) {
         createProject(input:$input) {
-          project {
+          project @appendNode(connections: $connections,edgeTypeName:"ProjectEdge"){
             id
             leader
           }
@@ -23,7 +26,8 @@ export default function CreateProject() {
                 content,
                 leader,
                 startDate,
-            }
+            },
+            connections: [props.connectionID],
         }
 
         commit({
@@ -41,18 +45,21 @@ export default function CreateProject() {
                     }
                 }
             },
-            updater: (store) => {
-                const rootField = store.get('client:root');
-                const oldEdges = rootField.getLinkedRecord('projects').getLinkedRecords('edges');
-                const payload = store.getRootField('createProject');
-                const newProject = payload.getLinkedRecord('project');
-                const newID = payload.getDataID();
-                const newEdge = store.create('edge'+ newID, 'ProjectEdge');
-                newEdge.getOrCreateLinkedRecord('node', 'Project');
-                newEdge.setLinkedRecord(newProject, 'node');
-                const newEdges = [...oldEdges, newEdge];
-                rootField.getLinkedRecord('projects').setLinkedRecords(newEdges, 'edges');
-            },
+            //用@appendNode 替代
+            // updater: (store) => {
+                // const rootField = store.get('client:root');
+                // const connection = store.get(props.connectionID);
+                // window.connection = connection;
+                // const oldEdges = rootField.getLinkedRecord('projects').getLinkedRecords('edges');
+                // const payload = store.getRootField('createProject');
+                // const newProject = payload.getLinkedRecord('project');
+                // const newID = payload.getDataID();
+                // const newEdge = store.create('edge'+ newID, 'ProjectEdge');
+                // newEdge.getOrCreateLinkedRecord('node', 'Project');
+                // newEdge.setLinkedRecord(newProject, 'node');
+                // const newEdges = [newEdge, ...oldEdges];
+                // rootField.getLinkedRecord('projects').setLinkedRecords(newEdges, 'edges');
+            // },
         }
         )
     }

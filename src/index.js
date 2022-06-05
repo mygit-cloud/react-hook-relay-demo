@@ -8,7 +8,6 @@ const {RelayEnvironmentProvider} = require('react-relay');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
       <RelayEnvironmentProvider environment={environment}>
       <App />
     </RelayEnvironmentProvider>

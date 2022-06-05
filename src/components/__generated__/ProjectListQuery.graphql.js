@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8771203325e1c30c3a0a9af77ad517fb>>
+ * @generated SignedSource<<512e3903bb0f61857b7a662575615e32>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -14,9 +14,7 @@ import type { ConcreteRequest, Query } from 'relay-runtime';
 type ProjectList_projects$fragmentType = any;
 export type ProjectListQuery$variables = {||};
 export type ProjectListQuery$data = {|
-  +projects: ?{|
-    +$fragmentSpreads: ProjectList_projects$fragmentType,
-  |},
+  +$fragmentSpreads: ProjectList_projects$fragmentType,
 |};
 export type ProjectListQuery = {|
   variables: ProjectListQuery$variables,
@@ -32,20 +30,9 @@ var node/*: ConcreteRequest*/ = {
     "name": "ProjectListQuery",
     "selections": [
       {
-        "alias": null,
         "args": null,
-        "concreteType": "ProjectConnection",
-        "kind": "LinkedField",
-        "name": "projects",
-        "plural": false,
-        "selections": [
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "ProjectList_projects"
-          }
-        ],
-        "storageKey": null
+        "kind": "FragmentSpread",
+        "name": "ProjectList_projects"
       }
     ],
     "type": "Query",
@@ -59,7 +46,13 @@ var node/*: ConcreteRequest*/ = {
     "selections": [
       {
         "alias": null,
-        "args": null,
+        "args": [
+          {
+            "kind": "Literal",
+            "name": "first",
+            "value": 3
+          }
+        ],
         "concreteType": "ProjectConnection",
         "kind": "LinkedField",
         "name": "projects",
@@ -102,21 +95,21 @@ var node/*: ConcreteRequest*/ = {
             "storageKey": null
           }
         ],
-        "storageKey": null
+        "storageKey": "projects(first:3)"
       }
     ]
   },
   "params": {
-    "cacheID": "8fe156285e695f9c029907d0b62bcead",
+    "cacheID": "48fca8dbb781be7d388752088f342396",
     "id": null,
     "metadata": {},
     "name": "ProjectListQuery",
     "operationKind": "query",
-    "text": "query ProjectListQuery {\n  projects {\n    ...ProjectList_projects\n  }\n}\n\nfragment ProjectList_projects on ProjectConnection {\n  edges {\n    node {\n      id\n      ...Project_proj\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
+    "text": "query ProjectListQuery {\n  ...ProjectList_projects\n}\n\nfragment ProjectList_projects on Query {\n  projects(first: 3) {\n    edges {\n      node {\n        id\n        ...Project_proj\n      }\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
   }
 };
 
-(node/*: any*/).hash = "f45f80388e3268d96c20a9895dae994d";
+(node/*: any*/).hash = "af559d8fd74879e931e194423638e326";
 
 module.exports = ((node/*: any*/)/*: Query<
   ProjectListQuery$variables,

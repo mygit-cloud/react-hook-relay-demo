@@ -2,9 +2,9 @@ import React, { Suspense } from 'react';
 import { useQueryLoader } from 'react-relay';
 import { ErrorBoundary } from 'react-error-boundary'
 
-import Loading from './Loading';
+import Loading from '../Loading';
 
-import ProjectListQueryQL from './__generated__/ProjectListQuery.graphql';
+import ProjectListQueryQL from '../__generated__/ProjectListQuery.graphql';
 import ProjectListQuery from './ProjectListQuery';
 
 function ErrorFallback({ error, resetErrorBoundary }) {

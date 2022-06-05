@@ -1,41 +1,47 @@
-import ProjectListPage from './ProjectListPage';
-import CreateProject from "./CreateProject";
-import React, { useState } from 'react';
+import React, { Suspense } from 'react';
+import { useQueryLoader } from 'react-relay';
+import { ErrorBoundary } from 'react-error-boundary'
+import Loading from './Loading';
+import AppPageQuery from "./__generated__/AppPageQuery.graphql"
+import AppPage from './AppPage';
 
-function App() {
-  // const pad = {
-  //   'Create': 'Create',
-  //   'Updata':'Update',
-  //   'List':'List',
-  // }
-
-  const Create = 'Create';
-  // const Update = 'Update';
-  const List = 'List';
-
-  const [showPad, setShowPad] = useState(List);
-
-  // var ret;
-  // if (showPad === Create) {
-  //   ret = <div>
-  //     <CreateProject />
-  //     <button onClick={() => setShowPad(List)}>Back to list</button>
-  //   </div>
-  // } else {
-  //   ret = <div>
-  //     <ProjectListPage />
-  //     <button onClick={() => setShowPad(Create)}>Create</button>
-  //   </div>
-  // }
-
-  return (
-    <div>
-      test show
-      <ProjectListPage />
-      <CreateProject />
-      {/* {ret} */}
-    </div>
-  );
+function ErrorFallback({ error, resetErrorBoundary }) {
+    return (
+        <div role="alert">
+            <p>Something went wrong:</p>
+            <pre>{error.message}</pre>
+        </div>
+    )
 }
 
-export default App;
+export default function App() {
+    const [queryRef, loadQuery] = useQueryLoader(AppPageQuery)
+
+    if (queryRef === null) {
+        const variables = {
+            count: 4
+        };
+
+        loadQuery(
+            variables
+        );
+    }
+
+    return (
+        <div>
+            {
+                queryRef != null ?
+                    <div>
+                        App
+                        <ErrorBoundary FallbackComponent={ErrorFallback}  >
+                            <Suspense fallback={<Loading />}>
+                                <AppPage queryRef={queryRef} />
+                            </Suspense>
+                        </ErrorBoundary>
+                    </div>
+                    : null
+            }
+        </div>
+    )
+
+}
