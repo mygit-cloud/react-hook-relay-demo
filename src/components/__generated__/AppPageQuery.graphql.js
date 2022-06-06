@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<abfc70c317fb2afc01fb7d7d059dac21>>
+ * @generated SignedSource<<775a53399c2924b04bc00772e3668c08>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -306,12 +306,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a69e6685a4d434e2f7ec6f9b714b5bf6",
+    "cacheID": "3be2c2ff57102b7a7735432aa50f7a6e",
     "id": null,
     "metadata": {},
     "name": "AppPageQuery",
     "operationKind": "query",
-    "text": "query AppPageQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...ProjectList_projects\n  ...EngineerList_engineers\n}\n\nfragment EngineerList_engineers on Query {\n  engineers(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Engineer_engi\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment EngineerProject_proj on Project {\n  id\n  leader\n  content\n}\n\nfragment Engineer_engi on Engineer {\n  id\n  name\n  department\n  projects {\n    edges {\n      node {\n        ...EngineerProject_proj\n        id\n      }\n    }\n  }\n}\n\nfragment ProjectList_projects on Query {\n  projects(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Project_proj\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
+    "text": "query AppPageQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...ProjectList_projects\n  ...EngineerList_engineers\n}\n\nfragment EngineerList_engineers on Query {\n  engineers(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Engineer_engi\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment EngineerProject_proj on Project {\n  id\n  leader\n  content\n}\n\nfragment Engineer_engi on Engineer {\n  id\n  name\n  department\n  projects {\n    edges {\n      node {\n        id\n        ...EngineerProject_proj\n      }\n    }\n  }\n}\n\nfragment ProjectList_projects on Query {\n  projects(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Project_proj\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
   }
 };
 })();

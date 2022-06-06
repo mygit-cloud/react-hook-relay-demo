@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<23853aebc223f3a3d4890c2d0d7d4da6>>
+ * @generated SignedSource<<01e6afc07fdd469c7415d3d738fc97cc>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -21,6 +21,7 @@ export type Engineer_engi$data = {|
   +projects: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
+        +id: string,
         +$fragmentSpreads: EngineerProject_proj$fragmentType,
       |},
     |}>,
@@ -34,19 +35,21 @@ export type Engineer_engi$key = {
 };
 */
 
-var node/*: ReaderFragment*/ = {
+var node/*: ReaderFragment*/ = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "Engineer_engi",
   "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -85,6 +88,7 @@ var node/*: ReaderFragment*/ = {
               "name": "node",
               "plural": false,
               "selections": [
+                (v0/*: any*/),
                 {
                   "args": null,
                   "kind": "FragmentSpread",
@@ -103,8 +107,9 @@ var node/*: ReaderFragment*/ = {
   "type": "Engineer",
   "abstractKey": null
 };
+})();
 
-(node/*: any*/).hash = "5ceb712412fcc724d96e5fd225915a03";
+(node/*: any*/).hash = "12cc48554ffaec9deeab00817703c211";
 
 module.exports = ((node/*: any*/)/*: Fragment<
   Engineer_engi$fragmentType,

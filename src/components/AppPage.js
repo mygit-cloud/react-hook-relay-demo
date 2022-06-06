@@ -21,16 +21,15 @@ export default function AppPage(props) {
     return (
 
         <div>
-            App page
             {page === ProjectPage && 
             <div>
-            <button onClick={() => setPage(EngineerPage)}>Engineer</button>
+            <button onClick={() => setPage(EngineerPage)}>Switch to Engineer tab</button>
             <ProjectList projects={data} />
             </div>
             }
             {page === EngineerPage &&
             <div>
-                <button onClick={() => setPage(ProjectPage)}>Project</button>
+                <button onClick={() => setPage(ProjectPage)}>Switch to Project tab</button>
                 <EngineerList engineers={data} />
             </div>
             }  
