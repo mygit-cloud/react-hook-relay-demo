@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1cdd6b69901e0994188b70f1c4ab5771>>
+ * @generated SignedSource<<abfc70c317fb2afc01fb7d7d059dac21>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -62,17 +62,24 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "__typename",
+  "name": "leader",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "cursor",
   "storageKey": null
 },
-v5 = [
+v6 = [
   {
     "alias": null,
     "args": null,
@@ -88,7 +95,7 @@ v5 = [
     "storageKey": null
   }
 ],
-v6 = {
+v7 = {
   "kind": "ClientExtension",
   "selections": [
     {
@@ -152,18 +159,12 @@ return {
                 "plural": false,
                 "selections": [
                   (v2/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "leader",
-                    "storageKey": null
-                  },
-                  (v3/*: any*/)
+                  (v3/*: any*/),
+                  (v4/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v4/*: any*/)
+              (v5/*: any*/)
             ],
             "storageKey": null
           },
@@ -174,10 +175,10 @@ return {
             "kind": "LinkedField",
             "name": "pageInfo",
             "plural": false,
-            "selections": (v5/*: any*/),
+            "selections": (v6/*: any*/),
             "storageKey": null
           },
-          (v6/*: any*/)
+          (v7/*: any*/)
         ],
         "storageKey": null
       },
@@ -229,11 +230,53 @@ return {
                     "name": "department",
                     "storageKey": null
                   },
-                  (v3/*: any*/)
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "ProjectConnection",
+                    "kind": "LinkedField",
+                    "name": "projects",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "ProjectEdge",
+                        "kind": "LinkedField",
+                        "name": "edges",
+                        "plural": true,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "Project",
+                            "kind": "LinkedField",
+                            "name": "node",
+                            "plural": false,
+                            "selections": [
+                              (v2/*: any*/),
+                              (v3/*: any*/),
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "content",
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  (v4/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v4/*: any*/)
+              (v5/*: any*/)
             ],
             "storageKey": null
           },
@@ -244,10 +287,10 @@ return {
             "kind": "LinkedField",
             "name": "pageInfo",
             "plural": false,
-            "selections": (v5/*: any*/),
+            "selections": (v6/*: any*/),
             "storageKey": null
           },
-          (v6/*: any*/)
+          (v7/*: any*/)
         ],
         "storageKey": null
       },
@@ -263,12 +306,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "29cb70f52ef9050765b6477d50a94168",
+    "cacheID": "a69e6685a4d434e2f7ec6f9b714b5bf6",
     "id": null,
     "metadata": {},
     "name": "AppPageQuery",
     "operationKind": "query",
-    "text": "query AppPageQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...ProjectList_projects\n  ...EngineerList_engineers\n}\n\nfragment EngineerList_engineers on Query {\n  engineers(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Engineer_engi\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Engineer_engi on Engineer {\n  id\n  name\n  department\n}\n\nfragment ProjectList_projects on Query {\n  projects(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Project_proj\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
+    "text": "query AppPageQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...ProjectList_projects\n  ...EngineerList_engineers\n}\n\nfragment EngineerList_engineers on Query {\n  engineers(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Engineer_engi\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment EngineerProject_proj on Project {\n  id\n  leader\n  content\n}\n\nfragment Engineer_engi on Engineer {\n  id\n  name\n  department\n  projects {\n    edges {\n      node {\n        ...EngineerProject_proj\n        id\n      }\n    }\n  }\n}\n\nfragment ProjectList_projects on Query {\n  projects(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Project_proj\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Project_proj on Project {\n  id\n  leader\n}\n"
   }
 };
 })();

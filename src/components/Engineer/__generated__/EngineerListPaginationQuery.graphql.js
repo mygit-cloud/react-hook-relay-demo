@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<58aa82e0c44a851aaac713c7df1e0a5a>>
+ * @generated SignedSource<<a7f889d78675886f0374ee00bc3d0c31>>
  * @flow
  * @lightSyntaxTransform
  * @nogrep
@@ -50,7 +50,14 @@ v1 = [
     "name": "first",
     "variableName": "count"
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -97,13 +104,7 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "id",
-                    "storageKey": null
-                  },
+                  (v2/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -116,6 +117,54 @@ return {
                     "args": null,
                     "kind": "ScalarField",
                     "name": "department",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "ProjectConnection",
+                    "kind": "LinkedField",
+                    "name": "projects",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "ProjectEdge",
+                        "kind": "LinkedField",
+                        "name": "edges",
+                        "plural": true,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "Project",
+                            "kind": "LinkedField",
+                            "name": "node",
+                            "plural": false,
+                            "selections": [
+                              (v2/*: any*/),
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "leader",
+                                "storageKey": null
+                              },
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "content",
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
+                    ],
                     "storageKey": null
                   },
                   {
@@ -190,12 +239,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d39b586aa4b95db0d0bf62ffa88fbd1d",
+    "cacheID": "a1e2da1180f351dffbf0d475c83859af",
     "id": null,
     "metadata": {},
     "name": "EngineerListPaginationQuery",
     "operationKind": "query",
-    "text": "query EngineerListPaginationQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...EngineerList_engineers\n}\n\nfragment EngineerList_engineers on Query {\n  engineers(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Engineer_engi\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment Engineer_engi on Engineer {\n  id\n  name\n  department\n}\n"
+    "text": "query EngineerListPaginationQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...EngineerList_engineers\n}\n\nfragment EngineerList_engineers on Query {\n  engineers(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...Engineer_engi\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment EngineerProject_proj on Project {\n  id\n  leader\n  content\n}\n\nfragment Engineer_engi on Engineer {\n  id\n  name\n  department\n  projects {\n    edges {\n      node {\n        ...EngineerProject_proj\n        id\n      }\n    }\n  }\n}\n"
   }
 };
 })();
